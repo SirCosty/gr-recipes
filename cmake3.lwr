@@ -1,0 +1,35 @@
+#
+# This file is part of PyBOMBS
+#
+# PyBOMBS is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# PyBOMBS is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PyBOMBS; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+#
+
+
+# A special recipe for guaranteeing that CMake is at least version 3.1.
+# Depend on this recipe to make sure you have an up-to-date version of CMake.
+#
+# The vanilla, baseline CMake recipe is in the PyBOMBS source tree.
+
+inherit: autoconf
+category: baseline
+satisfy:
+  deb: (cmake >= 3.1.0) && (cmake-data >= 3.1.0)
+  rpm: (cmake >= 3.1.0)
+  pacman: cmake >= 3.1.0
+  port: cmake >= 3.1.0
+  portage: dev-util/cmake >= 3.1.0
+  cmd: cmake --version >= 3.1.0
+source: wget+http://cmake.org/files/v3.7/cmake-3.7.0.tar.gz

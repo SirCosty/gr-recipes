@@ -1,0 +1,39 @@
+#
+# This file is part of PyBOMBS
+#
+# PyBOMBS is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# PyBOMBS is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PyBOMBS; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+#
+
+category: baseline
+#configure: ./waf configure --prefix=$prefix
+depends:
+- cairo
+- python
+#install: ./waf install
+install_like: cairo
+#make: ./waf build
+inherit: autoconf
+satisfy:
+  deb: python-cairo-dev >= 1.8
+  rpm: (pycairo-devel >= 1.8) || (python-cairo-devel >= 1.8)
+  pacman: python2-cairo >= 1.8
+  port: py27-cairo >= 1.8
+  portage: dev-python/pycairo >= 1.8
+  python: cairo.version >= 1.8
+  pip: pycairo >= 1.8
+#source: wget+http://cairographics.org/releases/py2cairo-1.8.10.tar.gz
+source: git+git://git.cairographics.org/git/py2cairo
+configure: sh ./autogen.sh --prefix=$prefix

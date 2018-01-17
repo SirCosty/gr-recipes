@@ -1,0 +1,34 @@
+#
+# This file is part of PyBOMBS
+#
+# PyBOMBS is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# PyBOMBS is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PyBOMBS; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+#
+
+category: baseline
+configure: cd .. && ./bootstrap.sh --prefix=$prefix --libdir=$prefix/lib/
+depends:
+- python
+- libbzip
+make: cd .. && ./b2 --threading=multi --layout=tagged link=shared -j$makewidth --build-dir=build
+install: cd .. && ./b2 --threading=multi --layout=tagged link=shared -j$makewidth install --build-dir=build
+install_static: cd .. && ./bjam cxxflags='-fPIC' --threading=multi --layout=tagged link=static -j$makewidth install --build-dir=build
+satisfy:
+  deb: libboost-all-dev >= 1.53 || libboost-dev >= 1.53
+  rpm: (boost-devel >= 1.53) || (boost_1_61-devel >= 1.53) || (boost_1_64-devel >= 1.53) || (boost_1_65-devel >= 1.53)
+  pacman: boost >= 1.53
+  port: boost >= 1.53
+  portage: dev-libs/boost >= 1.53
+source: wget+http://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.bz2
