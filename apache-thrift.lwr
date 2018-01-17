@@ -37,7 +37,7 @@ depends:
 - ssl
 - pkg-config
 - twisted
-gitrev: 0.10.0
+gitrev: 0.9.4
 inherit: bootstrapautoconf
 source: git+https://github.com/apache/thrift.git
 satisfy:
